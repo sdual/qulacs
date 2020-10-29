@@ -9,6 +9,8 @@ if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 7.0.0)
 	message(FATAL_ERROR, "g++ >= 7.0.0 is required.")
 endif()
 
+##### Julia build flag
+option(WITH_JULIA "Compile VisualDL with Julia" OFF)
 
 ##### Set default behavior #####
 set(DEFAULT_USE_SIMD Yes)
@@ -69,7 +71,7 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND
-      ${CMAKE_COMMAND} -E copy_directory ${EIGEN_BUILD_DIR}/src/eigen/Eigen ${EIGEN_INCLUDE_DIR}/Eigen 
+      ${CMAKE_COMMAND} -E copy_directory ${EIGEN_BUILD_DIR}/src/eigen/Eigen ${EIGEN_INCLUDE_DIR}/Eigen
       && ${CMAKE_COMMAND} -E copy_directory ${EIGEN_BUILD_DIR}/src/eigen/unsupported ${EIGEN_INCLUDE_DIR}/unsupported
     TEST_COMMAND ""
 )
@@ -240,7 +242,7 @@ elseif(MSVC)
 	endif()
 
 	# static link to multithread runtimes
-	set(variables 
+	set(variables
 		CMAKE_CXX_FLAGS_DEBUG
 		CMAKE_CXX_FLAGS_RELEASE
 		CMAKE_CXX_FLAGS_RELWITHDEBINFO
@@ -327,4 +329,8 @@ if(USE_PYTHON)
 		DEPENDS qulacs
 		COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/python/test/test_qulacs.py ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 	)
+endif()
+
+if(WITH_JULIA)
+	add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/julia)
 endif()

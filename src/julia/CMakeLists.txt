@@ -7,8 +7,8 @@ find_package(JlCxx REQUIRED)
 
 add_library(cppsimjl SHARED cppsim/state_wrapper.cpp)
 #add_dependencies(cppsimjl cppsim_static)
-target_link_libraries(cppsimjl PRIVATE cppsim_static)
-target_link_libraries(cppsimjl PRIVATE JlCxx::cxxwrap_julia ${OPTIONAL_LINK_FLAGS})
+#target_link_libraries(cppsimjl PRIVATE cppsim_static)
+target_link_libraries(cppsimjl PRIVATE JlCxx::cxxwrap_julia cppsim_static ${OPTIONAL_LINK_FLAGS})
 
 install(TARGETS cppsimjl
     RUNTIME DESTINATION lib

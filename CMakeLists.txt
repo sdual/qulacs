@@ -56,7 +56,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 ##### set external projects #####
 include(ExternalProject)
-include(${CMAKE_SOURCE_DIR}/FetchContent.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/FetchContent.cmake)
 
 # Eigen
 set(EIGEN_BUILD_DIR   ${CMAKE_BINARY_DIR}/eigen)
@@ -69,7 +69,7 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND
-      ${CMAKE_COMMAND} -E copy_directory ${EIGEN_BUILD_DIR}/src/eigen/Eigen ${EIGEN_INCLUDE_DIR}/Eigen 
+      ${CMAKE_COMMAND} -E copy_directory ${EIGEN_BUILD_DIR}/src/eigen/Eigen ${EIGEN_INCLUDE_DIR}/Eigen
       && ${CMAKE_COMMAND} -E copy_directory ${EIGEN_BUILD_DIR}/src/eigen/unsupported ${EIGEN_INCLUDE_DIR}/unsupported
     TEST_COMMAND ""
 )
@@ -240,7 +240,7 @@ elseif(MSVC)
 	endif()
 
 	# static link to multithread runtimes
-	set(variables 
+	set(variables
 		CMAKE_CXX_FLAGS_DEBUG
 		CMAKE_CXX_FLAGS_RELEASE
 		CMAKE_CXX_FLAGS_RELWITHDEBINFO

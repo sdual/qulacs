@@ -59,8 +59,8 @@ include(ExternalProject)
 include(${CMAKE_CURRENT_SOURCE_DIR}/FetchContent.cmake)
 
 # Eigen
-set(EIGEN_BUILD_DIR   ${CMAKE_BINARY_DIR}/eigen)
-set(EIGEN_INSTALL_DIR ${CMAKE_SOURCE_DIR}/include)
+set(EIGEN_BUILD_DIR   ${CMAKE_CURRENT_BINARY_DIR}/eigen)
+set(EIGEN_INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(EIGEN_INCLUDE_DIR ${EIGEN_INSTALL_DIR})
 ExternalProject_Add(
     eigen
